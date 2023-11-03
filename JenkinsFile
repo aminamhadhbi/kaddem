@@ -22,14 +22,15 @@ pipeline {
             }
         }
 
-     
-        
-
-        stage('Test') {
+      stage('SonarQube Analysis') {
             steps {
-                sh 'mvn test'
+                withCredentials([usernamePassword(credentialsId: 'sonarqube-password-credentials-id', usernameVariable: 'admin', passwordVariable: 'admina')]) {
+                    sh "mvn sonar:sonar -Dsonar.login=$SONAR_USER -Dsonar.password=$SONAR_PASSWORD"
+                }
             }
         }
-    
+        
+
+   
    }
 }
