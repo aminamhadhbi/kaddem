@@ -22,6 +22,19 @@ pipeline {
             }
         }
 
+        stage('SonarQube Analysis') {
+            steps {
+              //  withCredentials([usernamePassword(credentialsId: 'sonarqube-password-credentials-id', usernameVariable: 'SONAR_USER', passwordVariable: 'SONAR_PASSWORD')]) {
+                    sh "mvn sonar:sonar -Dsonar.login=$admin -Dsonar.password=$admin"
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
     
    }
 }
