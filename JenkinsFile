@@ -24,10 +24,9 @@ pipeline {
 
     stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarQubeServer') {
                     sh 'mvn sonar:sonar' -Dsonar.login=admin -Dsonar.password=admin'
                 }
-            }
+          
         }
     }
 }
