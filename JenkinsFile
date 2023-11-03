@@ -21,12 +21,7 @@ pipeline {
                 sh 'mvn compile'
             }
         }
-     //   stage('Build') {
-       //     steps {
-                // Compilation de l'application
-         //       sh 'mvn clean package'
-           // }
-        //}
 
-     // }
+
+   }
 }
