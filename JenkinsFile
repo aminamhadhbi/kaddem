@@ -28,7 +28,7 @@ pipeline {
                 }
           
         }
-stages {
+
         stage('Build Artifact') {
             steps {
                 script {
@@ -42,7 +42,7 @@ stages {
                     sh label: '', script: "${mvnTool}/bin/mvn ${mavenGoals}"
                 }
             }
-        }
+       
     }
     }
 }
