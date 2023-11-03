@@ -24,7 +24,7 @@ pipeline {
 
       stage('SonarQube Analysis') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'sonarqube-password-credentials-id', usernameVariable: 'admin', passwordVariable: 'admina')]) {
+                withCredentials([usernamePassword(credentialsId: 'sonarqube-password-credentials-id', usernameVariable: 'admin', passwordVariable: 'admin')]) {
                     sh "mvn sonar:sonar -Dsonar.login=$SONAR_USER -Dsonar.password=$SONAR_PASSWORD"
                 }
             }
