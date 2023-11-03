@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Récupérer le code depuis le référentiel Git
+                git 'https://github.com/aminamhadhbi/kaddem.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Compilation de l'application
+                sh 'mvn clean package'
+            }
+        }
+
+      }
+}
