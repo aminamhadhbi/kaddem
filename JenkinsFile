@@ -24,6 +24,14 @@ pipeline {
             }
         }
 
+     stage("Deploy With Nexus") {
+            steps {
+                sh "mvn clean package deploy:deploy-file -DgroupId=tn.esprit -DgeneratePom=true -Durl=http://192.168.33.10:8081/repository/maven-releases/"
+            }
+
+
+
+
     stage('SonarQube Analysis') {
             steps {
                     sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=admin'
@@ -31,18 +39,7 @@ pipeline {
           
         }
 
-        stage('Build Artifact') {
-            steps {
-                    script {
-                    // Set the Maven goals and options
-                    def mavenGoals = 'clean package'
-                    
-                    // Run Maven to build the artifact using the predefined Maven tool
-                    sh script: "${MAVEN_HOME}/bin/mvn ${mavenGoals}"
-                }
-            }
-       
-    }
+ 
     }
 }
 
