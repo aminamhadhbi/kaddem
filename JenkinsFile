@@ -22,10 +22,10 @@ pipeline {
             }
         }
 
-      stage('SonarQube Analysis') {
+    stage('SonarQube Analysis') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'sonarqube-password-credentials-id', usernameVariable: 'admin', passwordVariable: 'admin')]) {
-                    sh "mvn sonar:sonar -Dsonar.login=$SONAR_USER -Dsonar.password=$SONAR_PASSWORD"
+                withSonarQubeEnv('SonarQubeServer') {
+                    sh 'mvn sonar:sonar'
                 }
             }
         }
