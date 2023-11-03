@@ -22,11 +22,6 @@ pipeline {
             }
         }
 
-      stage('Build') {
-            steps {
-                // Compilation de l'application
-                sh 'mvn clean package'
-            }
-        }
+    
    }
 }
