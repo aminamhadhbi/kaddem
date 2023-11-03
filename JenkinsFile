@@ -28,5 +28,22 @@ pipeline {
                 }
           
         }
+stages {
+        stage('Build Artifact') {
+            steps {
+                script {
+                    // Define the Maven tool (make sure it's configured in Jenkins)
+                    def mvnTool = tool name: 'Maven', type: 'Tool'
+
+                    // Set the Maven goals and options
+                    def mavenGoals = 'clean package'
+                    
+                    // Run Maven to build the artifact
+                    sh label: '', script: "${mvnTool}/bin/mvn ${mavenGoals}"
+                }
+            }
+        }
+    }
     }
 }
+
