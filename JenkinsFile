@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+ environment {
+        MAVEN_HOME = tool name: 'Maven', type: 'Tool'
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -31,15 +33,12 @@ pipeline {
 
         stage('Build Artifact') {
             steps {
-                script {
-                    // Define the Maven tool (make sure it's configured in Jenkins)
-                    def mvnTool = tool name: 'Maven', type: 'Tool'
-
+                    script {
                     // Set the Maven goals and options
                     def mavenGoals = 'clean package'
                     
-                    // Run Maven to build the artifact
-                    sh label: '', script: "${mvnTool}/bin/mvn ${mavenGoals}"
+                    // Run Maven to build the artifact using the predefined Maven tool
+                    sh script: "${MAVEN_HOME}/bin/mvn ${mavenGoals}"
                 }
             }
        
