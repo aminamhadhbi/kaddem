@@ -8,13 +8,25 @@ pipeline {
                 git 'https://github.com/aminamhadhbi/kaddem.git'
             }
         }
-
-        stage('Build') {
+ stage('Maven Clean') {
             steps {
-                // Compilation de l'application
-                sh 'mvn clean package'
+                // Nettoyer le projet (mvn clean)
+                sh 'mvn clean'
             }
         }
 
-      }
+        stage('Maven Compile') {
+            steps {
+                // Compiler le projet (mvn compile)
+                sh 'mvn compile'
+            }
+        }
+     //   stage('Build') {
+       //     steps {
+                // Compilation de l'application
+         //       sh 'mvn clean package'
+           // }
+        //}
+
+     // }
 }
