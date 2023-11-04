@@ -49,7 +49,7 @@ pipeline {
  stage('Building our image') {
             steps{
                  script {
-                    dockerImage = docker.build("aminamhadhbi/second:${env.BUILD_NUMBER}")
+                    dockerImage = docker.build("aminamhadhbi/kaddem:${env.BUILD_NUMBER}")
 
                    // dockerImage = docker.build registry + ":$BUILD_NUMBER"
                  }
