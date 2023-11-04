@@ -28,5 +28,11 @@ services:
       MYSQL_DATABASE: kaddemProject
     volumes:
       - mysql-data:/var/lib/mysql  # Persist MySQL data
-
+ kaddem:
+    image: aminamhadhbi/kaddem:14
+    ports:
+      - 8055:8055
+    restart: unless-stopped
+    depends_on:
+      - mysql-standalone
 
