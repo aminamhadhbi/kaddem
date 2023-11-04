@@ -49,17 +49,17 @@ pipeline {
  stage('Building our image') {
             steps{
                  script {
-                    dockerImage = docker.build("aminamhadhbi/kaddem1:${env.BUILD_NUMBER}")
+                    //dockerImage = docker.build("aminamhadhbi/kaddem1:${env.BUILD_NUMBER}")
 
-                   // dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                   dockerImage = docker.build registry + ":$BUILD_NUMBER"
                  }
             }
        }
 stage('Deploy our image') {
-             steps {
+             steps {   script {
                      docker.withRegistry( '', registryCredential ) {
                      dockerImage.push()
-                                  }
+                                  }}
             }
        }
     }
