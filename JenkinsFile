@@ -40,12 +40,12 @@ pipeline {
                 }
           
         }
-   stage('Build Artifact') {
-            steps {
+ //  stage('Build Artifact') {
+            //steps {
               // Run Maven clean and package commands to build the .jar file.
-                sh 'mvn clean package -DskipTests'
-            }
-        }
+          //      sh 'mvn clean package -DskipTests'
+        //    }
+      //  }
  stage('Building our image') {
             steps{
                  script {
