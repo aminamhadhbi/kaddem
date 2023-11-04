@@ -26,20 +26,20 @@ pipeline {
             }
         }
   
-     stage("Deploy With Nexus") {
-            steps {
-              sh 'mvn clean deploy -DskipTests -Durl=http://192.168.33.10:8081/repository/maven-releases/'
-            }
-}
+  //   stage("Deploy With Nexus") {
+    //        steps {
+      //        sh 'mvn clean deploy -DskipTests -Durl=http://192.168.33.10:8081/repository/maven-releases/'
+        //    }
+     //}
 
 
 
-    stage('SonarQube Analysis') {
-            steps {
-                    sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=admin'
-                }
+    //stage('SonarQube Analysis') {
+      //      steps {
+        //            sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=admin'
+          //      }
           
-        }
+        //}
  //  stage('Build Artifact') {
             //steps {
               // Run Maven clean and package commands to build the .jar file.
