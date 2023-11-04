@@ -1,8 +1,10 @@
 pipeline {
     agent any
- //environment {
-   //     MAVEN_HOME = tool name: 'Maven', type: 'Tool'
- //   }
+    environment {
+    registry = "aminamhadhbi/kaddem"
+    registryCredential = 'dockerHub'
+    dockerImage = ''
+    }
     stages {
         stage('Checkout') {
             steps {
