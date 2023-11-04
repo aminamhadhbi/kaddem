@@ -20,7 +20,7 @@ pipeline {
         stage('Maven Compile') {
             steps {
                 // Compiler le projet (mvn compile)
-                sh 'mvn compile'
+                sh 'mvn compile -DskipTests'
             }
         }
      stage('Build Artifact') {
