@@ -57,7 +57,7 @@ stage('Deploy our image') {
              steps {
                   script {
                     // docker.withRegistry('https://registry.hub.docker.com') {
-docker.withRegistry( '', registryCredential ) {
+//docker.withRegistry( '', registryCredential ) {
                     
 dockerImage.push("${registry}:${BUILD_NUMBER}")
 
