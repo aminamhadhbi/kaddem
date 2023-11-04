@@ -3,7 +3,7 @@ pipeline {
     environment {
     registry = "aminamhadhbi/kaddem"
     registryCredential = 'dockerHub'
-    dockerImage = 'firsttry'
+    dockerImage = ''
     }
     stages {
         stage('Checkout') {
