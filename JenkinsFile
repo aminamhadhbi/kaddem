@@ -56,8 +56,10 @@ pipeline {
 stage('Deploy our image') {
              steps {
                   script {
-                     docker.withRegistry('https://registry.hub.docker.com') {
-                     dockerImage.push("${registry}:${BUILD_NUMBER}")
+                    // docker.withRegistry('https://registry.hub.docker.com') {
+docker.withRegistry( '', registryCredential ) {
+                    
+dockerImage.push("${registry}:${BUILD_NUMBER}")
 
                     // docker.withRegistry( '', registryCredential ) {
                    //  dockerImage.push()
