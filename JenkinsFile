@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     // Lancer les conteneurs Docker à l'aide de Docker Compose
-                    sh "docker-compose -f ${DOCKER_COMPOSE_FILE} up -d"
+                    sh "docker-compose up"
                 }
             }
         }
