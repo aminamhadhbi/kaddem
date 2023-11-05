@@ -1,24 +1,17 @@
 version: "3.9"
 services:
-  mysqldb:
-    container_name: mysqldb  # Fixed typo: container_name
-    image: mysql:8
-    restart: unless-stopped
+  mysql-standalone:
+    image: mysql:latest
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: kaddemProject
-    volumes:
-      - mysql-data:/var/lib/mysql
+      - MYSQL_DATABASE=kaddemProject
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=
     ports:
-      - "3306:3306"
-
-  spring-app:
-    image: kaddem7:latest
-    container_name: kaddem7  # Fixed typo: container_name
-    restart: on-failure
+      - 3306:3306
+  kaddem:
+    image: aminamhadhbi/kaddem:83
     ports:
-      - "9090:9090"
+      - 9090:9090
+    restart: unless-stopped
     depends_on:
-      - mysqldb
-  volumes:
-  mysql-data:  # Declare the named volume here
+      - mysql-standalone
