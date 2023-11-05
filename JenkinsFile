@@ -17,7 +17,7 @@ pipeline {
         stage('Start Containers') {
             steps {
                 // Run docker-compose using the generated docker-compose.yml
-                sh 'docker-compose up -d'
+                sh 'sudo docker-compose up -d'
             }
         }
  stage('Maven Clean') {
