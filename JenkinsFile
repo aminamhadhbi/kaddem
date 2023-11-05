@@ -14,14 +14,14 @@ pipeline {
                 git 'https://github.com/aminamhadhbi/kaddem.git'
             }
         }
-        stage('Start Containers') {
-            steps {
-             sh 'docker --version' 
+      //  stage('Start Containers') {
+        //    steps {
+          //   sh 'docker --version' 
 
                // Run docker-compose using the generated docker-compose.yml
-               sh 'docker-compose up -d'
-            }
-        }
+            //   sh 'docker-compose up -d'
+            //}
+        //}
  stage('Maven Clean') {
             steps {
                 // Nettoyer le projet (mvn clean)
@@ -36,11 +36,11 @@ pipeline {
             }
         }
   
-     stage("Deploy With Nexus") {
-            steps {
-              sh 'mvn clean deploy -DskipTests -Durl=http://192.168.33.10:8081/repository/maven-releases/'
-            }
-     }
+ //    stage("Deploy With Nexus") {
+   //         steps {
+     //         sh 'mvn clean deploy -DskipTests -Durl=http://192.168.33.10:8081/repository/maven-releases/'
+       //     }
+     //}
 
 
 
