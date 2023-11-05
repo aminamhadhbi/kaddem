@@ -14,12 +14,50 @@ pipeline {
                 git 'https://github.com/aminamhadhbi/kaddem.git'
             }
         }
-  stage('Start Containers') {
+stage('Generate docker-compose.yml') {
             steps {
                 script {
-                    // Lancer les conteneurs Docker à l'aide de Docker Compose
-                    sh "docker-compose up"
+                    // Define your docker-compose content dynamically
+                    def dockerComposeContent = """
+                    version: '3'
+                    services:
+                      spring-app:
+                        image: your-spring-app-image:latest
+                        ports:
+                          - "9090:9090"
+                        environment:
+                          - spring.datasource.url=jdbc:mysql://mysql-db:3306/kaddemProject?createDatabaseIfNotExist=true
+                          - spring.datasource.username=root
+                          - spring.datasource.password=root_password
+                          - spring.jpa.show-sql=true
+                          - spring.jpa.hibernate.ddl-auto=update
+                          - logging.file.path=/var/log/Gestion-Facture-LogFile
+                          - logging.file.max-size=10MB
+                          - logging.level.root=info
+                          - spring.mvc.format.date=yyyy-MM-dd
+                        depends_on:
+                          - mysql-db
+
+                      mysql-db:
+                        image: mysql:latest
+                        ports:
+                          - "3306:3306"
+                        environment:
+                          MYSQL_ROOT_PASSWORD: root_password
+                          MYSQL_DATABASE: kaddemProject
+                        volumes:
+                          - mysql-data:/var/lib/mysql
+                      """
+                    
+                    // Write the docker-compose content to a temporary file
+                    writeFile file: 'docker-compose.yml', text: dockerComposeContent
                 }
+            }
+        }
+        stage('Start Containers') {
+            steps {
+                // Run docker-compose using the generated docker-compose.yml
+                sh 'docker-compose up -d'
             }
         }
  stage('Maven Clean') {
