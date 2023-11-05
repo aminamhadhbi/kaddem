@@ -4,12 +4,22 @@ pipeline {
     registry = "aminamhadhbi/kaddem7"
     registryCredential = 'dockerHub'
     dockerImage = ''
+    DOCKER_COMPOSE_FILE = 'docker-compose.yml'
+
     }
     stages {
         stage('Checkout') {
             steps {
                 // Récupérer le code depuis le référentiel Git
                 git 'https://github.com/aminamhadhbi/kaddem.git'
+            }
+        }
+  stage('Start Containers') {
+            steps {
+                script {
+                    // Lancer les conteneurs Docker à l'aide de Docker Compose
+                    sh "docker-compose -f ${DOCKER_COMPOSE_FILE} up -d"
+                }
             }
         }
  stage('Maven Clean') {
