@@ -1,16 +1,17 @@
 version: "3.9"
 
 services:
-  container_name: mysqldb
+  mysqldb:
+    container_name: mysqldb
     image: mysql:8
     restart: unless-stopped
     environment:
-     MYSQL_ROOT_PASSWORD= root
+      MYSQL_ROOT_PASSWORD: root
     volumes:
-     - /home/mysql/data:/var/liv/mysql
-       
+      - /home/mysql/data:/var/lib/mysql
+
   kaddem:
-    image: kaddem 
+    image: kaddem
     container_name: kaddem
     restart: on-failure
     ports:
