@@ -1,17 +1,19 @@
 version: "3.9"
+
 services:
-  mysql-standalone:
-    image: mysql:latest
+  container_name: mysqldb
+    image: mysql:8
+    restart: unless-stopped
     environment:
-      - MYSQL_DATABASE=kaddemProject
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=
-    ports:
-      - 3306:3306
+     MYSQL_ROOT_PASSWORD= root
+    volumes:
+     - /home/mysql/data:/var/liv/mysql
+       
   kaddem:
-    image: aminamhadhbi/kaddem:83
+    image: kaddem 
+    container_name: kaddem
+    restart: on-failure
     ports:
       - 9090:9090
-    restart: unless-stopped
     depends_on:
-      - mysql-standalone
+      - mysqldb
