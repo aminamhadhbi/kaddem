@@ -39,11 +39,11 @@ pipeline {
          //       }
           
        // }
-   //stage('Build Artifact with mvn') {
-     //       steps {
-         //       sh 'mvn clean package -DskipTests'
-       //     }
-        //}
+   stage('Build Artifact with mvn') {
+            steps {
+                sh 'mvn clean package -DskipTests'
+            }
+        }
      //stage("Deploy With Nexus") {
        //     steps {
          //     sh 'mvn clean deploy -DskipTests -Durl=http://192.168.33.10:8081/repository/maven-releases/'
