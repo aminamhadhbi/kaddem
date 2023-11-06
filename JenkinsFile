@@ -27,23 +27,23 @@ pipeline {
             }
         }
   
-//  stage('Unit Tests') {
-  //          steps {
+  stage('Unit Tests') {
+            steps {
                
-    //            sh 'mvn test'
-      //      }
-       // }
-    stage('SonarQube Analysis') {
-            steps {
-                    sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=admin'
-                }
-          
-        }
-   stage('Build Artifact with mvn') {
-            steps {
-                sh 'mvn clean package -DskipTests'
+                sh 'mvn test -DskipTests'
             }
         }
+   // stage('SonarQube Analysis') {
+     //       steps {
+       //             sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=admin'
+         //       }
+          
+       // }
+   //stage('Build Artifact with mvn') {
+     //       steps {
+         //       sh 'mvn clean package -DskipTests'
+       //     }
+        //}
      stage("Deploy With Nexus") {
             steps {
               sh 'mvn clean deploy -DskipTests -Durl=http://192.168.33.10:8081/repository/maven-releases/'
