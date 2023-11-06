@@ -36,13 +36,6 @@ pipeline {
             }
         }
   
- //    stage("Deploy With Nexus") {
-   //         steps {
-     //         sh 'mvn clean deploy -DskipTests -Durl=http://192.168.33.10:8081/repository/maven-releases/'
-       //     }
-     //}
-
-
 
     stage('SonarQube Analysis') {
             steps {
@@ -56,6 +49,11 @@ pipeline {
                 sh 'mvn clean package -DskipTests'
             }
         }
+     stage("Deploy With Nexus") {
+            steps {
+              sh 'mvn clean deploy -DskipTests -Durl=http://192.168.33.10:8081/repository/maven-releases/'
+            }
+     }
  stage('Building our image') {
             steps{
                  script {
